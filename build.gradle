@@ -1,0 +1,31 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+    testCompile 'junit:junit:4.12'
+    testCompile 'org.apache.commons:commons-lang3:3.3.2'
+    testCompile 'log4j:log4j:1.2.17'
+    testCompile 'org.apache.poi:poi:3.10-FINAL'
+    testCompile 'info.cukes:cucumber-java:1.2.5'
+    testCompile 'info.cukes:cucumber-jvm-deps:1.0.5'
+    testCompile 'info.cukes:cucumber-junit:1.2.4'
+    testCompile 'info.cukes:gherkin:2.12.2'
+    testCompile 'org.seleniumhq.selenium:selenium-java:2.53.0'
+    testCompile 'org.testng:testng:6.14.3'    
+}
+
+defaultTasks 'clean'
+test{
+	useTestNG()
+    reports {
+        junitXml.enabled = false
+        html.enabled = false
+    } 
+	testLogging {
+		events "standardOut"
+    }
+}
