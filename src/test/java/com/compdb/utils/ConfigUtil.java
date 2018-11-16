@@ -29,7 +29,8 @@ public class ConfigUtil {
 	}
 
 	public static String getRootDir() {
-		String propertiesLocation = "";
+		return System.getProperty("user.dir");
+/*		String propertiesLocation = "";
 		String path = ConfigUtil.class.getResource("ConfigUtil.class").getPath();
 		path.replace("\\", "/");
 		int sourceLocation = path.indexOf("/ComputerDB/");
@@ -38,5 +39,5 @@ public class ConfigUtil {
 		}
 		propertiesLocation = propertiesLocation + "/ComputerDB";
 		return propertiesLocation;
-	}
+*/	}
 }

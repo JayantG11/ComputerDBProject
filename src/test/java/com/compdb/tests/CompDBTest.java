@@ -25,10 +25,12 @@ public class CompDBTest {
 	@BeforeMethod
 	public void beforeTest() throws InterruptedException {
     	System.out.println("-------------------------------------");
+    	System.out.println("---Regression Test Suite for Computer Database Application---");
+    	System.out.println("-------------------------------------");
     	loginPage.navigateTo(ConfigUtil.getProperty("compdb.url"));
 	}
 
-    @Test(priority=1, description = "")
+    @Test(priority=1, description = "TC001: Create Computer Name Scenario : Field Validation Test")
 	public void fieldCreateValidation() {
     	homePage.clickAddNewComputer();
 		Assert.assertEquals(addDetailsPage.validateComputerName(), true);
@@ -36,7 +38,7 @@ public class CompDBTest {
 		Assert.assertEquals(addDetailsPage.validateDiscontinuedDate(), true);
 	}
 
-    @Test(priority=2, description = "")
+    @Test(priority=2, description = "TC002: Create Computer Name Scenario : Happy WF Test with Valid Set of Data")
 	public void CreateComputer() {
     	homePage.addNewComputer();
     	homePage.searchComputer(ConfigUtil.getProperty("compName"));
@@ -44,7 +46,7 @@ public class CompDBTest {
 		Assert.assertEquals(results.get(5).getText(), ConfigUtil.getProperty("compName"));
 	}	
 
-	@Test(priority=3, description = "")
+	@Test(priority=3, description = "TC003: Read Computer Details Scenario")
 	public void readComputer() {
 		homePage.searchAndClickComputer(ConfigUtil.getProperty("compName"));
 		Assert.assertEquals(addDetailsPage.getComputerName(), ConfigUtil.getProperty("compName"));
@@ -52,7 +54,7 @@ public class CompDBTest {
 		Assert.assertEquals(addDetailsPage.getDiscontinuedDate(), "2018-11-01");
 	}
 
-	@Test(priority=4, description = "")
+	@Test(priority=4, description = "TC004: Edit/Update Computer Name Scenario : Field Validation Test")
 	public void fieldEditValidation() {
 		homePage.searchAndClickComputer(ConfigUtil.getProperty("compName"));
 		Assert.assertEquals(addDetailsPage.validateComputerName(), true);
@@ -60,7 +62,7 @@ public class CompDBTest {
 		Assert.assertEquals(addDetailsPage.validateDiscontinuedDate(), true);
 	}
     
-    @Test(priority=5, description = "")
+    @Test(priority=5, description = "TC005: Edit/Update Computer Name Scenario : Happy WF Test with Valid Set of Data")
     public void editComputer() {
     	homePage.editComputer(ConfigUtil.getProperty("compName"));
     	homePage.searchComputer(ConfigUtil.getProperty("updatedCompName"));
@@ -68,7 +70,7 @@ public class CompDBTest {
 		Assert.assertEquals(results.get(5).getText(), ConfigUtil.getProperty("updatedCompName"));
     }
 
-	@Test(priority=6, description = "")
+	@Test(priority=6, description = "TC006: Delete Computer Name Scenario")
 	public void deleteComputer() {
     	homePage.searchComputer(ConfigUtil.getProperty("updatedCompName"));
 		List<WebElement> oldResults = homePage.getComputerList();
