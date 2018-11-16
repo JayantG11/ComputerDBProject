@@ -1,12 +1,16 @@
 package com.compdb.tests;
 
 import java.util.List;
+
+import org.apache.log4j.Logger;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
 import com.compdb.pages.AddDetailsPage;
 import com.compdb.pages.HomePage;
 import com.compdb.pages.LoginPage;
 import com.compdb.utils.ConfigUtil;
+import com.compdb.utils.LoggerUtil;
+
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -16,17 +20,18 @@ public class CompDBTest {
 	LoginPage loginPage = new LoginPage();
 	HomePage homePage = new HomePage();
 	AddDetailsPage addDetailsPage = new AddDetailsPage();
+	Logger s_logs = LoggerUtil.logger();
 	
 	@BeforeClass
 	public void beforeClass() {
+    	s_logs.info("---Regression Test Suite for Computer Database Application---");
+    	s_logs.info("-------------------------------------------------------------");
 		loginPage.launchApplication(ConfigUtil.getProperty("compdb.url"));
 	}
 	
 	@BeforeMethod
-	public void beforeTest() throws InterruptedException {
-    	System.out.println("-------------------------------------");
-    	System.out.println("---Regression Test Suite for Computer Database Application---");
-    	System.out.println("-------------------------------------");
+	public void beforeMethod() throws InterruptedException {
+    	s_logs.info("-------------------------------------");
     	loginPage.navigateTo(ConfigUtil.getProperty("compdb.url"));
 	}
 
